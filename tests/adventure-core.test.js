@@ -1,0 +1,11 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const A=require('../adventure-core.js');
+const tile=(terrain='grass',road=null,blocked=false)=>({terrain,road,blocked});
+test('straight and diagonal movement use H3-like base costs',()=>{assert.equal(A.stepCost({x:0,y:0},{x:1,y:0},tile()),100);assert.equal(A.stepCost({x:0,y:0},{x:1,y:1},tile()),141);});
+test('terrain penalties and roads alter movement cost',()=>{assert.equal(A.stepCost({x:0,y:0},{x:1,y:0},tile('swamp')),175);assert.equal(A.stepCost({x:0,y:0},{x:1,y:0},tile('swamp','paved')),55);});
+test('pathfinder avoids blockers and cannot cut a blocked diagonal corner',()=>{const map={width:3,height:3,tiles:Array.from({length:9},()=>tile())};map.tiles[1].blocked=true;map.tiles[3].blocked=true;assert.equal(A.findPath(map,{x:0,y:0},{x:1,y:1},[]),null);});
+test('pathfinder prefers cheaper road route over swamp shortcut',()=>{const width=4,height=3,tiles=[];for(let y=0;y<height;y++)for(let x=0;x<width;x++)tiles.push(tile(y===1?'swamp':'grass',y===0?'paved':null));const p=A.findPath({width,height,tiles},{x:0,y:1},{x:3,y:1},[]);assert.ok(p.some(s=>s.y===0));});
+test('route splits at movement budget',()=>{const map={width:4,height:1,tiles:[tile(),tile(),tile(),tile()]};const split=A.splitPathByMovement([{x:1,y:0},{x:2,y:0},{x:3,y:0}],map,200,{x:0,y:0});assert.equal(split.today.length,2);assert.equal(split.later.length,1);});
+test('calendar rolls day week and month',()=>{assert.deepEqual(A.advanceCalendar({day:7,week:4,month:1}),{day:1,week:1,month:2,newWeek:true,newMonth:true});});
+test('visibility returns Chebyshev radius',()=>{assert.equal(A.visibleTiles(5,5,12,12,2).length,25);});

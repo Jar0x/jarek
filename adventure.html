@@ -1,0 +1,12 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Królestwa Pogranicza — Mapa przygody</title><link rel="stylesheet" href="adventure.css"></head><body>
+<div class="adventure-shell">
+<header class="topbar"><div class="calendar"><b id="calendarLabel">M1 • T1 • D1</b><span id="objective">Cel: przejmij Opuszczoną Kopalnię Złota</span></div><div class="resources">
+<span title="Kamień">🪨 <b id="res-stone">0</b></span><span title="Drewno">🪵 <b id="res-wood">0</b></span><span title="Rtęć">⚗️ <b id="res-mercury">0</b></span><span title="Siarka">🟡 <b id="res-sulfur">0</b></span><span title="Klejnoty">💎 <b id="res-gems">0</b></span><span title="Złoto">🪙 <b id="res-gold">0</b></span><span title="Grzyby Dusz">🍄 <b id="res-soulMushrooms">0</b></span>
+</div></header>
+<main class="layout"><aside id="heroPanel" class="hero-panel"><div class="portrait">🧙‍♂️</div><h2 id="heroName">Aldren</h2><div id="heroStats"></div><div class="movement"><span>Ruch</span><progress id="moveBar" max="1800" value="1800"></progress><b id="moveText"></b></div><button id="centerHeroBtn">🎯 Wyśrodkuj bohatera</button><button id="newGameBtn">↻ Nowa gra</button></aside>
+<section class="map-frame"><div id="mapViewport" class="map-viewport"><div id="adventureMap" class="adventure-map"></div></div><div id="mapStatus" class="map-status">Kliknij pole, aby zaplanować trasę. Kliknij ponownie, aby ruszyć.</div><div id="armyBar" class="army-bar"></div></section>
+<aside class="right-panel"><canvas id="minimap" width="224" height="224"></canvas><button id="endDayBtn" class="end-day">🌙 Zakończ dzień</button><div class="legend"><b>Mapa</b><span>🟩 dostępne dziś</span><span>🟧 kolejny dzień</span><span>🏰 miasto</span><span>⚔️ neutralna armia</span></div></aside></main>
+</div>
+<div id="modal" class="modal hidden"><div class="modal-card"><h3 id="modalTitle"></h3><p id="modalText"></p><div id="modalActions"></div></div></div>
+<script src="adventure-core.js"></script><script src="game-state.js"></script><script src="town-core.js"></script><script src="maps/adventure-v1-map.js"></script><script src="battle-bridge.js"></script><script src="adventure.js"></script>
+</body></html>

@@ -1,0 +1,2 @@
+const test=require('node:test');const assert=require('node:assert/strict');const fs=require('node:fs');
+test('Town screen has seven resources, buildings, recruits and army containers',()=>{const h=fs.readFileSync('./town.html','utf8');for(const id of ['res-stone','res-wood','res-mercury','res-sulfur','res-gems','res-gold','res-soulMushrooms','buildingsGrid','recruitPanel','heroArmy','garrisonArmy','backToMapBtn'])assert.ok(h.includes(`id="${id}"`),id);});
