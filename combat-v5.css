@@ -1,0 +1,7 @@
+/* Combat v5 — Battlefield Depth */
+.battle-obstacle{position:absolute;z-index:3;transform:translate(-50%,-62%);font-size:38px;filter:drop-shadow(0 7px 5px #0009);pointer-events:none}.obstacle-ruin{font-size:42px}.obstacle-trunk{transform:translate(-50%,-55%) rotate(-8deg)}
+.unit.size-2{transform-origin:center bottom}.unit.skeleton.size-2{transform:translate(-67%,-83%) scale(1.8,1.55)}.unit.blob.size-2{transform:translate(-63%,-72%) scale(1.45,1.18)}.unit.size-2.facing-left{scale:-1 1}
+.large-tail-ring{position:absolute;width:55px;height:18px;border:2px dashed #e8c96f99;border-radius:50%;z-index:4;transform:translate(-50%,-35%);pointer-events:none}.tail-hitbox{z-index:9}
+.v5-fx{position:absolute;z-index:30;transform:translate(-50%,-50%);font-size:34px;pointer-events:none;animation:v5Pop .85s ease-out forwards}@keyframes v5Pop{0%{opacity:0;transform:translate(-50%,-20%) scale(.5)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.25)}100%{opacity:0;transform:translate(-50%,-120%) scale(1)}}
+.v5-stats{display:grid;grid-template-columns:repeat(4,minmax(90px,1fr));gap:5px 10px;margin-top:8px;padding-top:7px;border-top:1px solid #ffffff18;font:12px Arial,sans-serif;color:#cfc6ad}.v5-stats span{display:flex;justify-content:space-between;gap:8px}.v5-stats b{color:#fff0b3}.queue-unit.large{box-shadow:inset 0 0 0 1px #8db7d866}.log-entry.morale{color:#d9f19a}.log-entry.morale-bad{color:#ff9a90}.log-entry.luck{color:#91efb1}
+@media(max-width:900px){.v5-stats{grid-template-columns:repeat(2,1fr)}}
