@@ -1,0 +1,11 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const B=require('../battlefield-core.js');
+const ctx=(units=[],obstacles=[])=>({cols:15,rows:11,units,obstacles});
+test('1-hex footprint is only the head',()=>{assert.deepEqual(B.footprint({c:3,r:4,size:1,facing:'right'}),[{c:3,r:4}]);});
+test('2-hex footprint derives rear from facing',()=>{assert.deepEqual(B.footprint({c:3,r:4,size:2,facing:'right'}),[{c:3,r:4},{c:2,r:4}]);assert.deepEqual(B.footprint({c:3,r:4,size:2,facing:'left'}),[{c:3,r:4},{c:4,r:4}]);assert.deepEqual(B.footprint({c:3,r:5,size:2,facing:'right'}),[{c:3,r:5},{c:2,r:5}]);assert.deepEqual(B.footprint({c:3,r:5,size:2,facing:'left'}),[{c:3,r:5},{c:4,r:5}]);});
+test('placement rejects rear outside board',()=>{const u={id:'u',c:0,r:4,size:2,facing:'right',dead:false,totalHp:10};assert.equal(B.canPlace(u,u,ctx([u])),false);});
+test('placement rejects obstacle or unit under rear',()=>{const u={id:'u',c:4,r:4,size:2,facing:'right',dead:false,totalHp:10};assert.equal(B.canPlace(u,u,ctx([u],[{c:3,r:4}])),false);const other={id:'x',c:3,r:4,size:1,facing:'left',dead:false,totalHp:10};assert.equal(B.canPlace(u,u,ctx([u,other])),false);});
+test('large unit pathfinding passes wide corridor',()=>{const u={id:'u',c:2,r:5,size:2,facing:'right',dead:false,totalHp:10};const obstacles=[];for(let r=0;r<11;r++)if(r!==5&&r!==6)obstacles.push({c:6,r});const path=B.findPath(u,{c:2,r:5,facing:'right'},{c:9,r:5},ctx([u],obstacles),20);assert.ok(path&&path.length>0);assert.equal(path.at(-1).c,9);});
+test('large unit cannot pass one-hex choke',()=>{const u={id:'u',c:7,r:2,size:2,facing:'right',dead:false,totalHp:10};const obstacles=[];for(let c=0;c<15;c++)if(c!==7)obstacles.push({c,r:5});const path=B.findPath(u,{c:7,r:2,facing:'right'},{c:7,r:8},ctx([u],obstacles),20);assert.equal(path,null);});
+test('footprint adjacency works across any occupied hexes',()=>{const a={c:4,r:4,size:2,facing:'right'},b={c:5,r:4,size:1,facing:'left'};assert.equal(B.footprintsAdjacent(a,b),true);});

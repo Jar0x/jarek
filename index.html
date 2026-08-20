@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Królestwa Pogranicza — Combat v4</title>
+  <title>Królestwa Pogranicza — Combat v5</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="combat-v4.css" />
+  <link rel="stylesheet" href="combat-v5.css" />
 </head>
 <body>
   <main class="game-shell">
     <header>
       <div>
         <h1>Królestwa Pogranicza</h1>
-        <p class="subtitle">Combat v4 — bohaterowie, magia, Czekaj, Obrona i dziennik walki</p>
+        <p class="subtitle">Combat v5 — jednostki 2-hex, przeszkody, morale i szczęście</p>
       </div>
       <button id="restartBtn">Nowa walka</button>
     </header>
@@ -62,8 +63,10 @@
     </section>
   </main>
   <script src="combat-core.js"></script>
+  <script src="battlefield-core.js"></script>
   <script src="game.js"></script>
   <script src="combat-v4.js"></script>
+  <script src="combat-v5.js"></script>
   <script>document.getElementById('restartBtn').onclick=reset;</script>
 </body>
 </html>

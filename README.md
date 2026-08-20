@@ -1,4 +1,4 @@
-# Królestwa Pogranicza — Combat v3
+# Królestwa Pogranicza — Combat v5
 
 Samodzielny prototyp HTML/CSS/JS turowej walki fantasy inspirowanej klasycznymi strategiami. Projekt nie zawiera plików z Heroes of Might and Magic III.
 
@@ -10,26 +10,44 @@ Otwórz `index.html` albo uruchom lokalny serwer:
 python -m http.server 8080
 ```
 
-## Combat v3
+## Najważniejsze mechaniki
 
 - pole bitwy 15 × 11 heksów,
-- kolejka inicjatywy oparta o szybkość jednostek i widoczna w HUD,
-- kontratak raz na rundę po ataku wręcz,
-- statystyki Atak/Obrona wpływające na obrażenia,
-- Kościani Łucznicy po obu stronach, limitowani liczbą strzałów,
-- kara 50% do obrażeń dystansowych przy strzale powyżej 6 heksów,
-- blokada strzelania, gdy wróg stoi na sąsiednim heksie — łucznik wtedy walczy wręcz,
-- panel statystyk jednostki po najechaniu,
-- ulepszone SI: ocenia zagrożenie celu, możliwość zabicia, dystans i priorytet jednostek dystansowych,
-- kierunkowe ataki wręcz i podświetlenie sylwetki celu,
-- animacje ataku wracające poprawnie do stanu idle.
+- inicjatywa wg szybkości, kontrataki, jednostki dystansowe i taktyczne SI,
+- bohaterowie, mana, księga czarów, Czekaj, Obrona i dziennik walki,
+- pełne jednostki 2-hex z polem głównym, tylnym heksiem i orientacją lewo/prawo,
+- wspólny dla gracza i SI pathfinding uwzględniający cały footprint jednostki,
+- statyczne przeszkody terenowe: skały, pnie i ruiny,
+- blokowanie ruchu oraz ustawienia przez przeszkody i oba heksy dużych jednostek,
+- morale od -3 do +3: dodatnie może dać dodatkową akcję, ujemne może odebrać turę,
+- szczęście od 0 do +3: udany test podwaja obrażenia fizyczne, ale nie obrażenia czarów,
+- panel jednostki pokazujący rozmiar, kierunek, morale i szczęście,
+- dwie testowe jednostki 2-hex: Kościany Behemot i Bagienny Kolos.
+
+## Moduły
+
+- `combat-core.js` — wspólna logika obrażeń, efektów, morale i szczęścia,
+- `battlefield-core.js` — geometria heksów, footprinty, kolizje i pathfinding,
+- `game.js` — bazowy przebieg bitwy i animacje,
+- `combat-v4.js` — bohaterowie i magia,
+- `combat-v5.js` — przeszkody, jednostki 2-hex oraz integracja morale/szczęścia.
 
 ## Testy
 
-Logika walki ma prosty zestaw testów Node.js:
+Uruchom pełny zestaw:
 
 ```bash
-node --test tests/combat-core.test.js
+node --test tests/*.test.js
+```
+
+oraz kontrolę składni:
+
+```bash
+node --check combat-core.js
+node --check battlefield-core.js
+node --check game.js
+node --check combat-v4.js
+node --check combat-v5.js
 ```
 
 ## Assety
