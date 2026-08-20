@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Królestwa Pogranicza — prototyp walki</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header>
+      <div>
+        <h1>Królestwa Pogranicza</h1>
+        <p class="subtitle">Prototyp pola bitwy 15 × 11, kierunkowych ataków i prostego SI</p>
+      </div>
+      <button id="restartBtn">Nowa walka</button>
+    </header>
+
+    <section class="hud">
+      <div class="panel"><strong>Aktywna:</strong> <span id="turnLabel"></span></div>
+      <div class="panel"><strong>Gracz:</strong> <span id="playerCount"></span></div>
+      <div class="panel"><strong>SI:</strong> <span id="aiCount"></span></div>
+      <div class="panel status" id="statusText">Wybierz pole ruchu albo najedź na przeciwnika.</div>
+    </section>
+
+    <section class="battlefield-wrap">
+      <div id="battlefield" class="battlefield" aria-label="Pole bitwy 15 na 11 heksów"></div>
+    </section>
+
+    <section class="help">
+      <strong>Sterowanie:</strong> aktywna jednostka jest oznaczona złotym pierścieniem. Kliknij żółty heks, aby się ruszyć. Najedź na wrogą jednostkę — jej sylwetka zostanie podświetlona, a pozycja kursora wokół niej wybiera stronę ataku. Kliknięcie przeciwnika powoduje podejście do wskazanej strony i atak, jeśli jest w zasięgu ruchu. Jednostkami przeciwnika steruje proste SI.
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
