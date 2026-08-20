@@ -3,24 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Królestwa Pogranicza — Combat v3</title>
+  <title>Królestwa Pogranicza — Combat v4</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="combat-v4.css" />
 </head>
 <body>
   <main class="game-shell">
     <header>
       <div>
         <h1>Królestwa Pogranicza</h1>
-        <p class="subtitle">Combat v3 — inicjatywa, kontrataki, łucznicy i taktyczne SI</p>
+        <p class="subtitle">Combat v4 — bohaterowie, magia, Czekaj, Obrona i dziennik walki</p>
       </div>
       <button id="restartBtn">Nowa walka</button>
     </header>
+
+    <section class="hero-row">
+      <div class="hero-card player-hero" id="playerHeroCard"></div>
+      <div class="round-card"><strong>Runda</strong><span id="roundLabel">1</span></div>
+      <div class="hero-card ai-hero" id="aiHeroCard"></div>
+    </section>
 
     <section class="hud">
       <div class="panel"><strong>Aktywna:</strong> <span id="turnLabel"></span></div>
       <div class="panel"><strong>Gracz:</strong> <span id="playerCount"></span></div>
       <div class="panel"><strong>SI:</strong> <span id="aiCount"></span></div>
-      <div class="panel status" id="statusText">Wybierz pole ruchu albo przeciwnika.</div>
+      <div class="panel status" id="statusText">Wybierz akcję.</div>
     </section>
 
     <section class="combat-info">
@@ -35,11 +42,28 @@
       <div id="battlefield" class="battlefield" aria-label="Pole bitwy 15 na 11 heksów"></div>
     </section>
 
-    <section class="help">
-      <strong>Sterowanie:</strong> aktywna jednostka ma złoty pierścień. Kliknij żółty heks, aby się ruszyć. Jednostka walcząca wręcz wybiera kierunek ataku położeniem kursora wokół wroga. Łucznik strzela po kliknięciu przeciwnika, dopóki ma strzały i nie jest związany walką wręcz. Atak wręcz może wywołać jeden kontratak obrońcy na rundę. Najedź na dowolny oddział, aby zobaczyć jego statystyki.
+    <section class="action-bar">
+      <button id="waitBtn" title="Przenieś aktywną jednostkę na koniec bieżącej kolejki">⏳ Czekaj</button>
+      <button id="defendBtn" title="Zakończ turę i zyskaj +2 Obrony">🛡 Obrona</button>
+      <button id="spellBtn" title="Otwórz księgę czarów">📖 Księga czarów</button>
+      <div class="action-hint" id="actionHint">Bohater może rzucić jeden czar na rundę.</div>
+    </section>
+
+    <section class="bottom-panels">
+      <div class="panel spellbook hidden" id="spellbook">
+        <div class="panel-title"><strong>Księga czarów</strong><button id="closeSpellBtn">×</button></div>
+        <div id="spellGrid" class="spell-grid"></div>
+        <div class="spell-help" id="spellHelp">Wybierz czar, a następnie cel na polu bitwy.</div>
+      </div>
+      <div class="panel battle-log-panel">
+        <div class="panel-title"><strong>Dziennik walki</strong><span>ostatnie zdarzenia</span></div>
+        <div id="battleLog" class="battle-log"></div>
+      </div>
     </section>
   </main>
   <script src="combat-core.js"></script>
   <script src="game.js"></script>
+  <script src="combat-v4.js"></script>
+  <script>document.getElementById('restartBtn').onclick=reset;</script>
 </body>
 </html>
