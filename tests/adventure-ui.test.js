@@ -1,0 +1,2 @@
+const test=require('node:test');const assert=require('node:assert/strict');const fs=require('node:fs');
+test('Adventure HUD exposes seven resources and core controls',()=>{const h=fs.readFileSync('./adventure.html','utf8');for(const id of ['res-stone','res-wood','res-mercury','res-sulfur','res-gems','res-gold','res-soulMushrooms','adventureMap','heroPanel','armyBar','minimap','endDayBtn'])assert.ok(h.includes(`id="${id}"`),id);});
