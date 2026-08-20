@@ -1,46 +1,40 @@
-# Królestwa Pogranicza — prototyp walki v2
+# Królestwa Pogranicza — Combat v3
 
-Samodzielny prototyp HTML/CSS/JS inspirowany mechaniką klasycznych turowych strategii fantasy. Nie zawiera plików z Heroes of Might and Magic III.
+Samodzielny prototyp HTML/CSS/JS turowej walki fantasy inspirowanej klasycznymi strategiami. Projekt nie zawiera plików z Heroes of Might and Magic III.
 
 ## Uruchomienie
 
-Otwórz `index.html` w przeglądarce. Jeśli przeglądarka ogranicza lokalne pliki, w katalogu projektu uruchom:
+Otwórz `index.html` albo uruchom lokalny serwer:
 
 ```bash
 python -m http.server 8080
 ```
 
-i przejdź na `http://localhost:8080`.
-
-## Co zmieniono w v2
+## Combat v3
 
 - pole bitwy 15 × 11 heksów,
-- 3 oddziały gracza i 3 oddziały SI,
-- stosy jednostek z liczebnością,
-- proste SI: wybiera najbliższy możliwy cel, podchodzi i atakuje,
-- podświetlenie sylwetki wroga przy najechaniu,
-- wybór jednej z sześciu stron ataku zależnie od położenia kursora,
-- kierunkowy kursor ataku generowany jako SVG,
-- automatyczne podejście do wybranej strony przeciwnika,
-- naprawiona animacja ataku szkieleta: odtwarza się raz i wraca do idle,
-- obrażenia są zadawane w trakcie animacji, a nie przed jej pokazaniem,
-- kilka wariantów oddziałów o różnych statystykach i barwach.
+- kolejka inicjatywy oparta o szybkość jednostek i widoczna w HUD,
+- kontratak raz na rundę po ataku wręcz,
+- statystyki Atak/Obrona wpływające na obrażenia,
+- Kościani Łucznicy po obu stronach, limitowani liczbą strzałów,
+- kara 50% do obrażeń dystansowych przy strzale powyżej 6 heksów,
+- blokada strzelania, gdy wróg stoi na sąsiednim heksie — łucznik wtedy walczy wręcz,
+- panel statystyk jednostki po najechaniu,
+- ulepszone SI: ocenia zagrożenie celu, możliwość zabicia, dystans i priorytet jednostek dystansowych,
+- kierunkowe ataki wręcz i podświetlenie sylwetki celu,
+- animacje ataku wracające poprawnie do stanu idle.
+
+## Testy
+
+Logika walki ma prosty zestaw testów Node.js:
+
+```bash
+node --test tests/combat-core.test.js
+```
 
 ## Assety
 
-Assety pochodzą z OpenGameArt i są oznaczone jako CC0:
+Assety użyte w prototypie pozostają CC0 z OpenGameArt:
 
-- `skeleton_idle.png`, `skeleton_attack.png` — „Skeleton”, autor rehcub, OpenGameArt, CC0.
-- `blob_idle.png`, `blob_attack.png`, `blob_move.png`, `blob_death.png` — „Blob Sprite”, autor Woostar, OpenGameArt, CC0.
-
-Adresy źródeł pozostają takie jak w pierwszej wersji projektu.
-
-## SI
-
-Obecne SI jest celowo lekkie i czytelne:
-1. sprawdza wszystkie pola sąsiadujące z wrogimi oddziałami,
-2. szuka najkrótszej drogi,
-3. jeśli może dojść i zaatakować w tej turze — robi to,
-4. jeśli nie — idzie maksymalnie w kierunku najbliższego celu.
-
-Następny poziom SI może uwzględniać wartość celu, przewidywane obrażenia, kontratak, blokowanie przejść, jednostki dystansowe i magię.
+- `skeleton_idle.png`, `skeleton_attack.png` — „Skeleton”, rehcub,
+- `blob_idle.png`, `blob_attack.png`, `blob_move.png`, `blob_death.png` — „Blob Sprite”, Woostar.

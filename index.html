@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Królestwa Pogranicza — prototyp walki</title>
+  <title>Królestwa Pogranicza — Combat v3</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,7 +11,7 @@
     <header>
       <div>
         <h1>Królestwa Pogranicza</h1>
-        <p class="subtitle">Prototyp pola bitwy 15 × 11, kierunkowych ataków i prostego SI</p>
+        <p class="subtitle">Combat v3 — inicjatywa, kontrataki, łucznicy i taktyczne SI</p>
       </div>
       <button id="restartBtn">Nowa walka</button>
     </header>
@@ -20,7 +20,15 @@
       <div class="panel"><strong>Aktywna:</strong> <span id="turnLabel"></span></div>
       <div class="panel"><strong>Gracz:</strong> <span id="playerCount"></span></div>
       <div class="panel"><strong>SI:</strong> <span id="aiCount"></span></div>
-      <div class="panel status" id="statusText">Wybierz pole ruchu albo najedź na przeciwnika.</div>
+      <div class="panel status" id="statusText">Wybierz pole ruchu albo przeciwnika.</div>
+    </section>
+
+    <section class="combat-info">
+      <div class="panel unit-card" id="unitCard"></div>
+      <div class="panel initiative-panel">
+        <strong>Kolejność inicjatywy</strong>
+        <div id="initiativeQueue" class="initiative-queue"></div>
+      </div>
     </section>
 
     <section class="battlefield-wrap">
@@ -28,9 +36,10 @@
     </section>
 
     <section class="help">
-      <strong>Sterowanie:</strong> aktywna jednostka jest oznaczona złotym pierścieniem. Kliknij żółty heks, aby się ruszyć. Najedź na wrogą jednostkę — jej sylwetka zostanie podświetlona, a pozycja kursora wokół niej wybiera stronę ataku. Kliknięcie przeciwnika powoduje podejście do wskazanej strony i atak, jeśli jest w zasięgu ruchu. Jednostkami przeciwnika steruje proste SI.
+      <strong>Sterowanie:</strong> aktywna jednostka ma złoty pierścień. Kliknij żółty heks, aby się ruszyć. Jednostka walcząca wręcz wybiera kierunek ataku położeniem kursora wokół wroga. Łucznik strzela po kliknięciu przeciwnika, dopóki ma strzały i nie jest związany walką wręcz. Atak wręcz może wywołać jeden kontratak obrońcy na rundę. Najedź na dowolny oddział, aby zobaczyć jego statystyki.
     </section>
   </main>
+  <script src="combat-core.js"></script>
   <script src="game.js"></script>
 </body>
 </html>
