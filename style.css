@@ -77,3 +77,24 @@ button:hover { filter:brightness(1.18); }
 @keyframes floatDamage { from{ transform:translate(-50%,-20px); opacity:1 } to{ transform:translate(-50%,-80px); opacity:0 } }
 .help { margin-top:10px; padding:11px 14px; color:#c9c0a5; background:#0d1512aa; border-radius:8px; line-height:1.45; }
 @media(max-width:760px){ .hud{grid-template-columns:1fr 1fr}.status{grid-column:1/-1} header{align-items:flex-start;flex-direction:column} }
+
+/* Combat v3 */
+.combat-info { display:grid; grid-template-columns:minmax(300px,.9fr) minmax(420px,1.5fr); gap:8px; margin-bottom:10px; }
+.unit-card { min-height:104px; }
+.unit-card-title { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; color:#ffe7a0; }
+.unit-card-title span { font:700 11px Arial,sans-serif; text-transform:uppercase; color:#bdb395; }
+.stats-grid { display:grid; grid-template-columns:repeat(4,minmax(90px,1fr)); gap:5px 10px; font:12px Arial,sans-serif; color:#cfc6ad; }
+.stats-grid span { display:flex; justify-content:space-between; gap:8px; border-bottom:1px solid #ffffff10; padding-bottom:3px; }
+.stats-grid b { color:#fff0b3; }
+.initiative-panel { overflow:hidden; }
+.initiative-queue { display:flex; gap:5px; overflow-x:auto; padding-top:8px; scrollbar-width:thin; }
+.queue-unit { flex:0 0 auto; min-width:108px; max-width:142px; padding:6px 7px; border:1px solid #6b5c38; border-radius:6px; background:#18211ccc; font:11px Arial,sans-serif; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:5px; color:#d8cfb8; }
+.queue-unit b { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.queue-unit em { font-style:normal; font-weight:800; color:#efd77f; }
+.queue-unit.current { border-color:#ffe06c; box-shadow:0 0 10px #ffd84c55,inset 0 0 12px #a5781840; color:white; }
+.queue-unit.done { opacity:.42; filter:grayscale(.45); }
+.queue-unit.dead { opacity:.18; text-decoration:line-through; }
+.unit.variant-archer { filter:drop-shadow(0 8px 5px #0008) sepia(.28) saturate(1.25) hue-rotate(340deg); }
+.unit.variant-archer.target-hover { filter:brightness(1.35) contrast(1.08) drop-shadow(0 0 2px #fff) drop-shadow(0 0 7px #ffcf73) drop-shadow(0 0 14px #e33); }
+.unit-hitbox.shootable { cursor:crosshair; }
+@media(max-width:900px){ .combat-info{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)} }
